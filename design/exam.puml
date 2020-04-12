@@ -1,0 +1,69 @@
+@startuml
+
+package paper <<Aggregate>> {
+
+    class Paper <<Aggregate Root>> {
+        id: Long
+        blankQuizzes: List<BlankQuiz>
+        reassemble(blankQuizzes: List<BlankQuiz>)
+        {static} assemble(blankQuizzes: List<BlankQuiz>): Paper
+    }
+
+    class BlankQuiz <<Entity>> {
+        id: Long
+        question: String
+        referenceAnswer: String
+        score: Int
+    }
+
+    Paper "1" o-- "N" BlankQuiz
+}
+
+package examination <<Aggregate>> {
+
+    class Examination <<Aggregate Root>> {
+        id: Long
+        paper: Paper
+        examMinutes: Int
+        startDate: Long
+        endDate: Long
+        {static} create(paper: Paper, examMinutes: Int, startDate: Long, endDate: Long): Examination
+    }
+
+    class "Paper" as P <<Value Object>> {
+        blankQuizzes: List<BlankQuiz>
+    }
+
+    class "BlankQuiz" as Q <<Value Object>> {
+        question: String
+        referenceAnswer: String
+        score: Int
+    }
+
+    Examination "1" *-- "1" P
+    P "1" *-- "5..20" Q
+    Paper "1" <.. "1" Examination
+}
+
+package answersheet <<Aggregate>> {
+    class AnswerSheet <<Aggregate Root>> {
+        id: Long
+        examination: Examination
+        answers: List<Answer>
+        leftMinutes: Int
+        submitAnswer(index: Int, answer: String)
+        handIn()
+        {static} assign(examination: Examination): AnswerSheet
+    }
+
+    class Answer <<Entity>> {
+        id: Long
+        answer: String
+        submit(answer: String)
+    }
+
+    Examination "1" <-- "1" AnswerSheet
+    AnswerSheet "1" *-- "5..20" Answer
+}
+
+@enduml
