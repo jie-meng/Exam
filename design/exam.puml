@@ -31,10 +31,12 @@ package examination <<Aggregate>> {
     }
 
     class "Paper" as P <<Value Object>> {
+        id: Long
         blankQuizzes: List<BlankQuiz>
     }
 
     class "BlankQuiz" as Q <<Value Object>> {
+        id: Long
         question: String
         referenceAnswer: String
         score: Int
@@ -48,6 +50,7 @@ package examination <<Aggregate>> {
 package answersheet <<Aggregate>> {
     class AnswerSheet <<Aggregate Root>> {
         id: Long
+        studentId: Long
         examination: Examination
         answers: List<Answer>
         leftMinutes: Int
