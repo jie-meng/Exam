@@ -42,13 +42,13 @@ package examination <<Aggregate>> {
         score: Int
     }
 
-    class PaperId {
+    class PaperId <<Value Object>> {
         id: String
     }
 
     Examination "1" *-- "1" P
     P "1" *-- "5..20" Q
-    PaperId "1" <-- "1" Examination
+    PaperId "1" <.. "1" Examination
 }
 
 package examsheet <<Aggregate>> {
@@ -70,7 +70,7 @@ package examsheet <<Aggregate>> {
         submit(answer: String)
     }
 
-    class ExaminationId {
+    class ExaminationId <<Value Object>> {
         id: String
     }
 
