@@ -3,14 +3,14 @@
 package paper <<Aggregate>> {
 
     class Paper <<Aggregate Root>> {
-        id: Long
+        id: String
         blankQuizzes: List<BlankQuiz>
         reassemble(blankQuizzes: List<BlankQuiz>)
         {static} assemble(blankQuizzes: List<BlankQuiz>): Paper
     }
 
     class BlankQuiz <<Entity>> {
-        id: Long
+        id: String
         question: String
         referenceAnswer: String
         score: Int
@@ -22,36 +22,41 @@ package paper <<Aggregate>> {
 package examination <<Aggregate>> {
 
     class Examination <<Aggregate Root>> {
-        id: Long
+        id: String
         paper: Paper
         examMinutes: Int
         startDate: Long
         endDate: Long
-        {static} create(paper: Paper, examMinutes: Int, startDate: Long, endDate: Long): Examination
+        {static} create(paperId: PaperId, examMinutes: Int, startDate: Long, endDate: Long): Examination
     }
 
     class "Paper" as P <<Value Object>> {
-        id: Long
+        id: String
         blankQuizzes: List<BlankQuiz>
     }
 
     class "BlankQuiz" as Q <<Value Object>> {
-        id: Long
+        id: String
         question: String
         referenceAnswer: String
         score: Int
     }
 
+    class PaperId {
+        id: String
+    }
+
     Examination "1" *-- "1" P
     P "1" *-- "5..20" Q
-    Paper "1" <.. "1" Examination
+    PaperId "1" <-- "1" Examination
 }
 
-package answersheet <<Aggregate>> {
-    class AnswerSheet <<Aggregate Root>> {
-        id: Long
-        studentId: Long
-        examination: Examination
+package examsheet <<Aggregate>> {
+
+    class ExamSheet <<Aggregate Root>> {
+        id: String
+        studentId: String
+        examinationId: ExaminationId
         answers: List<Answer>
         leftMinutes: Int
         submitAnswer(index: Int, answer: String)
@@ -60,13 +65,17 @@ package answersheet <<Aggregate>> {
     }
 
     class Answer <<Entity>> {
-        id: Long
+        id: String
         answer: String
         submit(answer: String)
     }
 
-    Examination "1" <-- "1" AnswerSheet
-    AnswerSheet "1" *-- "5..20" Answer
+    class ExaminationId {
+        id: String
+    }
+
+    ExaminationId "1" <-- "1" ExamSheet
+    ExamSheet "1" *-- "5..20" Answer
 }
 
 @enduml
