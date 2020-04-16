@@ -9,7 +9,7 @@ package paper <<Aggregate>> {
         {static} assemble(blankQuizzes: List<BlankQuiz>): Paper
     }
 
-    class BlankQuiz <<Entity>> {
+    class BlankQuiz <<ValueObject>> {
         id: String
         question: String
         referenceAnswer: String
