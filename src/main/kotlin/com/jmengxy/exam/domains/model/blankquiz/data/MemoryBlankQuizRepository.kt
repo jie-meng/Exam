@@ -20,6 +20,10 @@ class MemoryBlankQuizRepository : BlankQuizRepository {
         }
     }
 
+    override fun findAll(): List<BlankQuiz> {
+        return blankQuizzes.toList()
+    }
+
     override fun save(blankQuiz: BlankQuiz) {
         blankQuizzes.add(blankQuiz)
     }

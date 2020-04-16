@@ -1,23 +1,18 @@
 package com.jmengxy.exam.domains.model.examination
 
+import com.jmengxy.exam.base.exception.NoSuchPaperException
 import com.jmengxy.exam.base.id.PaperId
 import com.jmengxy.exam.base.ioc.Dependency
 import com.jmengxy.exam.base.type.ValueObject
-import java.util.*
 
-class Paper : ValueObject<Paper> {
+class Paper(val paperId: PaperId) : ValueObject<Paper> {
 
-    private var blankQuizzes: MutableList<BlankQuiz> = mutableListOf()
-        get() = Collections.unmodifiableList(field)
+    val blankQuizzes: List<BlankQuiz>
 
-    private val paperId: PaperId
-
-    private constructor(paperId: PaperId) {
-        this.paperId = paperId
-
-        val paper = Dependency.paperRepository.find(paperId)
-        paper?.let { p ->
-            this.blankQuizzes.addAll(p.blankQuizzes.map { BlankQuiz(it.blankQuizId, it.question, it.referenceAnswer, it.score) })
+    init {
+        val paper = Dependency.paperRepository.find(paperId) ?: throw NoSuchPaperException(paperId)
+        paper.let { p ->
+            this.blankQuizzes = p.getBlankQuizzes().map { BlankQuiz(it.blankQuizId, it.question, it.referenceAnswer, it.score) }
         }
     }
 

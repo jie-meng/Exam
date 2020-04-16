@@ -7,11 +7,14 @@ import java.util.*
 
 class Paper(val paperId: PaperId, blankQuizzes: List<BlankQuiz>) : Entity<Paper> {
 
-    val blankQuizzes: MutableList<BlankQuiz> = mutableListOf()
-        get() = Collections.unmodifiableList(field)
+    private val blankQuizzes: MutableList<BlankQuiz> = mutableListOf()
 
     init {
         reassemble(blankQuizzes)
+    }
+
+    fun getBlankQuizzes(): List<BlankQuiz> {
+        return Collections.unmodifiableList(blankQuizzes)
     }
 
     fun reassemble(blankQuizzes: List<BlankQuiz>) {

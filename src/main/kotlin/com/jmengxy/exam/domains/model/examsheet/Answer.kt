@@ -2,6 +2,7 @@ package com.jmengxy.exam.domains.model.examsheet
 
 import com.jmengxy.exam.base.id.AnswerId
 import com.jmengxy.exam.base.type.Entity
+import java.util.*
 
 class Answer(
         val answerId: AnswerId,
@@ -13,5 +14,12 @@ class Answer(
 
     fun submit(answer: String) {
         this.answer = answer
+    }
+
+    companion object {
+        fun create(): Answer {
+            val answerId = AnswerId("Answer_${UUID.randomUUID()}")
+            return Answer(answerId, "")
+        }
     }
 }

@@ -5,11 +5,13 @@ import com.jmengxy.exam.base.id.PaperId
 import com.jmengxy.exam.base.type.Entity
 
 class Examination(val examinationId: ExaminationId,
-                  val paperId: PaperId,
+                  paperId: PaperId,
                   val examMinutes: Int,
                   val startDate: Long,
                   val endDate: Long
 ) : Entity<Examination> {
+
+    val paper: Paper = Paper(paperId)
 
     companion object {
         fun create(

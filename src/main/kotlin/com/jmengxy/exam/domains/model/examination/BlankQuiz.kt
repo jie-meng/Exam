@@ -4,7 +4,7 @@ import com.jmengxy.exam.base.id.BlankQuizId
 import com.jmengxy.exam.base.type.ValueObject
 
 class BlankQuiz(
-        val blankQuiId: BlankQuizId,
+        val blankQuizId: BlankQuizId,
         val question: String,
         val referenceAnswer: String,
         val score: Int
@@ -15,7 +15,7 @@ class BlankQuiz(
             return true
         }
 
-        return this.blankQuiId.sameValueAs(other.blankQuiId)
+        return this.blankQuizId.sameValueAs(other.blankQuizId)
                 && this.score == other.score
                 && this.question == other.question
                 && this.referenceAnswer == other.referenceAnswer
