@@ -1,4 +1,4 @@
-package com.jmengxy.exam.domains.model.paper
+package com.jmengxy.exam.domains.paper.model
 
 import com.jmengxy.exam.base.exception.TooManyQuizzesException
 import com.jmengxy.exam.base.id.PaperId

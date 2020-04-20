@@ -1,4 +1,4 @@
-package com.jmengxy.exam.domains.model.examination
+package com.jmengxy.exam.domains.examination
 
 import com.jmengxy.exam.base.exception.NoSuchPaperException
 import com.jmengxy.exam.base.id.PaperId

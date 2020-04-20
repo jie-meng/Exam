@@ -2,10 +2,10 @@ package com.jmengxy.exam
 
 import com.jmengxy.exam.base.id.StudentId
 import com.jmengxy.exam.base.ioc.Dependency
-import com.jmengxy.exam.domains.model.blankquiz.BlankQuiz
-import com.jmengxy.exam.domains.model.examination.Examination
-import com.jmengxy.exam.domains.model.examsheet.ExamSheet
-import com.jmengxy.exam.domains.model.paper.Paper
+import com.jmengxy.exam.domains.blankquiz.model.BlankQuiz
+import com.jmengxy.exam.domains.examination.Examination
+import com.jmengxy.exam.domains.examsheet.ExamSheet
+import com.jmengxy.exam.domains.paper.model.Paper
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -32,7 +32,7 @@ class ExamApplicationTests {
     fun happy_path() {
         // create and save paper
         val findAll = blankQuizRepository.findAll()
-        val quizzes = findAll.subList(0, 10).map { com.jmengxy.exam.domains.model.paper.BlankQuiz(it.blankQuizId, 10) }
+        val quizzes = findAll.subList(0, 10).map { com.jmengxy.exam.domains.paper.model.BlankQuiz(it.blankQuizId, 10) }
 
         val paperId = paperRepository.nextPaperId()
         val paper = Paper.assemble(paperId, quizzes)

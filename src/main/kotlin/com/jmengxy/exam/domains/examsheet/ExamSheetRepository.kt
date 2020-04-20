@@ -1,7 +1,7 @@
-package com.jmengxy.exam.domains.model.examsheet.data
+package com.jmengxy.exam.domains.examsheet
 
 import com.jmengxy.exam.base.id.ExamSheetId
-import com.jmengxy.exam.domains.model.examsheet.ExamSheet
+import com.jmengxy.exam.domains.examsheet.ExamSheet
 
 interface ExamSheetRepository {
     fun find(examSheetId: ExamSheetId): ExamSheet?

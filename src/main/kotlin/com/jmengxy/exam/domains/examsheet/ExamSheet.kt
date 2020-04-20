@@ -1,4 +1,4 @@
-package com.jmengxy.exam.domains.model.examsheet
+package com.jmengxy.exam.domains.examsheet
 
 import com.jmengxy.exam.base.exception.ExamSheetAlreadyHandInException
 import com.jmengxy.exam.base.exception.NoSuchExaminationException

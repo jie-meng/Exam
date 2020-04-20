@@ -1,9 +1,12 @@
-package com.jmengxy.exam.domains.model.paper.data
+package com.jmengxy.exam.domains.paper.infrastructure
 
 import com.jmengxy.exam.base.id.PaperId
-import com.jmengxy.exam.domains.model.paper.Paper
+import com.jmengxy.exam.domains.paper.model.Paper
+import com.jmengxy.exam.domains.paper.model.PaperRepository
+import org.springframework.stereotype.Component
 import java.util.*
 
+@Component
 class MemoryPaperRepository : PaperRepository {
 
     private val papers = mutableListOf<Paper>()
@@ -12,6 +15,10 @@ class MemoryPaperRepository : PaperRepository {
         return papers.firstOrNull {
             it.paperId.sameValueAs(paperId)
         }
+    }
+
+    override fun findAll(): List<Paper> {
+        return papers
     }
 
     override fun save(paper: Paper) {

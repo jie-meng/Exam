@@ -1,9 +1,12 @@
-package com.jmengxy.exam.domains.model.examsheet.data
+package com.jmengxy.exam.domains.examsheet.infrastructure
 
 import com.jmengxy.exam.base.id.ExamSheetId
-import com.jmengxy.exam.domains.model.examsheet.ExamSheet
+import com.jmengxy.exam.domains.examsheet.ExamSheet
+import com.jmengxy.exam.domains.examsheet.ExamSheetRepository
+import org.springframework.stereotype.Component
 import java.util.*
 
+@Component
 class MemoryExamSheetRepository : ExamSheetRepository {
 
     private val examSheets = mutableListOf<ExamSheet>()

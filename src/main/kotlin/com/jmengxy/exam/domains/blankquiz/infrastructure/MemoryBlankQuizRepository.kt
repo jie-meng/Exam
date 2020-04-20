@@ -1,9 +1,12 @@
-package com.jmengxy.exam.domains.model.blankquiz.data
+package com.jmengxy.exam.domains.blankquiz.infrastructure
 
 import com.jmengxy.exam.base.id.BlankQuizId
-import com.jmengxy.exam.domains.model.blankquiz.BlankQuiz
+import com.jmengxy.exam.domains.blankquiz.model.BlankQuiz
+import com.jmengxy.exam.domains.blankquiz.model.BlankQuizRepository
+import org.springframework.stereotype.Component
 import java.util.*
 
+@Component
 class MemoryBlankQuizRepository : BlankQuizRepository {
 
     private val blankQuizzes = mutableListOf<BlankQuiz>()

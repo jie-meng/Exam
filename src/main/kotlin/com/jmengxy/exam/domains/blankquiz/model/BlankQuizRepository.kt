@@ -1,7 +1,7 @@
-package com.jmengxy.exam.domains.model.blankquiz.data
+package com.jmengxy.exam.domains.blankquiz.model
 
 import com.jmengxy.exam.base.id.BlankQuizId
-import com.jmengxy.exam.domains.model.blankquiz.BlankQuiz
+import com.jmengxy.exam.domains.blankquiz.model.BlankQuiz
 
 interface BlankQuizRepository {
     fun find(blankQuizId: BlankQuizId): BlankQuiz?
